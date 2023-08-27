@@ -69,8 +69,9 @@ def print_results(results_dic, results_stats_dic, model,
     print(" ")
     for key in results_stats_dic:
         if key.startswith('p'):
-            print("{:20}: {:.1f}".format(key, results_stats_dic[key]))
-    if print_incorrect_dogs and (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'] != results_stats_dic['n_images']):
+            print("{:20}: {:.2f}".format(key, results_stats_dic[key]))
+    if print_incorrect_dogs and (results_stats_dic['n_correct_dogs'] +
+                 results_stats_dic['n_correct_notdogs'] != results_stats_dic['n_images']):
         print("\nINCORRECT Dog/NOT Dog Assignments:")
         for key in results_dic:
             if sum(results_dic[key][3:]) == 1:

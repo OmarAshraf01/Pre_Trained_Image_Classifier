@@ -74,7 +74,7 @@ def main():
     #             classify_images(in_arg.dir, results, in_arg.arch)
     # Creates Classifier Labels with classifier function, Compares Labels, 
     # and adds these results to the results dictionary - results
-    classify_images(in_arg.dir, results, in_arg.dir)
+    classify_images(in_arg.dir, results, in_arg.arch)
 
     # Function that checks Results Dictionary using results    
     check_classifying_images(results)    

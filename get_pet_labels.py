@@ -3,7 +3,7 @@
 # */AIPND-revision/intropyproject-classify-pet-images/get_pet_labels.py
 #                                                                             
 # PROGRAMMER: Omar Ashraf
-# DATE CREATED: 11/7/2023
+# DATE CREATED: 27/8/2023
 # REVISED DATE: 
 # PURPOSE: Create the function get_pet_labels that creates the pet labels from 
 #          the image's filename. This function inputs: 
@@ -42,11 +42,25 @@ def get_pet_labels(image_dir):
     """
     # Replace None with the results_dic dictionary that you created with this
     # function
-    results_dic = {}
-
-    for filename in listdir(image_dir):
-        pet_label = filename.split("_")[0]
-        pet_label = pet_label.lower().strip()
-        results_dic[filename] = [pet_label]
-
+    in_files = listdir(image_dir)
+    results_dic = dict()
+    for idx in range(0, len(in_files), 1):
+       
+       # Skips file if starts with . (like .DS_Store of Mac OSX) because it 
+       # isn't a pet image file
+       if in_files[idx][0] != ".":
+           
+           # Extracts pet label from filename
+           file_parts = in_files[idx].lower().split("_")
+           pet_label = " ".join(file_parts[:-1])
+           
+           # If filename doesn't already exist in dictionary, add it and its
+           # pet label; otherwise, print an error message for duplicate files
+           if in_files[idx] not in results_dic:
+               results_dic[in_files[idx]] = [pet_label.strip()]
+           else:
+               print("** Warning: Duplicate files exist in directory:",
+                     in_files[idx])
+ 
+    # Return the results dictionary
     return results_dic
